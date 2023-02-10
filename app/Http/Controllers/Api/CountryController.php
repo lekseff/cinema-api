@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Country;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,11 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $data = Country::all(['id', 'country'])->sortBy('country');
-        return response($data);
+        $data = Country::all(['id', 'name'])
+            ->sortBy('name');
+        // Получаем 5 случайныйх стран - для примера
+        $country = $data->random(3)->pluck('id');
+        return response($country);
     }
 
     /**

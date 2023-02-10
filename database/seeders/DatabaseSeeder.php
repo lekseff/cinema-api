@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\AgeCategory;
+use Database\Factories\AgeCategoryFactory;
 use Illuminate\Database\Seeder;
 use App\Models\Country;
 
@@ -15,12 +17,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-        Country::factory(5)->create()->unique;
+        $this->call([
+            CountrySeeder::class,
+            AgeCategorySeeder::class,
+            GenreSeeder::class,
+            UserSeeder::class,
+        ]);
     }
 }

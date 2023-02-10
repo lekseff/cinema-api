@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('age_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('category', 10)->unique();
+            $table->string('name', 10)->unique();
             $table->timestamps();
         });
     }

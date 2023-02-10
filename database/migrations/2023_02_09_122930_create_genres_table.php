@@ -11,11 +11,11 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('genres', function (Blueprint $table) {
             $table->id();
-            $table->string('genre', 100)->unique();
+            $table->string('name', 100)->unique();
             $table->timestamps();
         });
     }
@@ -25,7 +25,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('genres');
     }
