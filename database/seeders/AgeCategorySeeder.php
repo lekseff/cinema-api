@@ -14,13 +14,12 @@ class AgeCategorySeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         foreach (AgeCategory::$categories as $category) {
-            AgeCategory::factory()
-                ->create(['name' => $category]);
+            AgeCategory::factory()->create(
+                ['name' => $category]
+            );
         }
-
-//        AgeCategory::factory()->create(['name' => Country::class::get()->random()->name]);
     }
 }

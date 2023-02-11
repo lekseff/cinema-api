@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Country>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Movie>
  */
-class CountryFactory extends Factory
+class MovieFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class CountryFactory extends Factory
     public function definition()
     {
         return [
-//            'name' => fake()->unique()->country()
+            //
         ];
     }
 }

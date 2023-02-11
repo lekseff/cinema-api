@@ -15,6 +15,12 @@ class CountrySeeder extends Seeder
      */
     public function run()
     {
-        Country::factory(10)->create()->unique();
+//        Country::factory(10)->create()->unique();
+        foreach (Country::$countries as $country) {
+            Country::factory()->create(
+                ['name' => $country]
+            );
+        }
+
     }
 }

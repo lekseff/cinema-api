@@ -15,17 +15,20 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $data = Country::all(['id', 'name'])
-            ->sortBy('name');
+//        $data = Country::all(['id', 'name'])
+//            ->sortBy('name');
+
+        $data = Country::all(['id', 'name'])->count();
+
         // Получаем 5 случайныйх стран - для примера
-        $country = $data->random(3)->pluck('id');
-        return response($country);
+//        $country = $data->random(3)->pluck('name');
+        return response($data);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -36,7 +39,7 @@ class CountryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Country  $country
+     * @param \App\Models\Country $country
      * @return \Illuminate\Http\Response
      */
     public function show(Country $country)
@@ -47,8 +50,8 @@ class CountryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Country  $country
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Country $country
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Country $country)
@@ -59,7 +62,7 @@ class CountryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Country  $country
+     * @param \App\Models\Country $country
      * @return \Illuminate\Http\Response
      */
     public function destroy(Country $country)
