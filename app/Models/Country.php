@@ -11,10 +11,22 @@ class Country extends Model
 
     static array $countries = [
         'США',
-        'Россия',
-        'Франция',
         'Индия',
-        'Бразилия',
+        'Россия',
+        'Канада',
+        'Франция',
+        'Новая Зеландия',
+        'Великобритания',
         'Другое',
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
+
+    public function movies()
+    {
+        return $this->belongsToMany(Movie::class);
+    }
 }

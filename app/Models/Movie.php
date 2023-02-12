@@ -14,8 +14,21 @@ class Movie extends Model
         'updated_at'
     ];
 
+    /**
+     * Возрастная категория фильма
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function ageCategory()
     {
         return $this->belongsTo(AgeCategory::class, 'age_category', 'id');
+    }
+
+    /**
+     * Страна производства фильма
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function countries()
+    {
+        return $this->belongsToMany(Country::class);
     }
 }

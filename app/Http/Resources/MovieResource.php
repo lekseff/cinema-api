@@ -14,6 +14,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property mixed $actors
  * @property mixed $timeline
  * @property mixed $age_category
+ * @property mixed $countries
  */
 class MovieResource extends JsonResource
 {
@@ -26,10 +27,19 @@ class MovieResource extends JsonResource
      */
     public function toArray($request): array
     {
+
+//        :FIXME: Посмотреть как можно получать данные стран без цикла
+        $countries = [];
+        foreach ($this->countries as $country)
+        {
+           $countries[] = $country->name;
+        }
+
         return [
             'id' => $this->id,
             'name' => $this->name,
             'age_category' => AgeCategory::class::find($this->age_category)->name,
+            'countries' => $countries,
             'plot' => $this->plot,
             'actors' => $this->actors,
             'timeline' => $this->timeline,

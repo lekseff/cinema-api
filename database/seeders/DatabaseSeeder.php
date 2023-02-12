@@ -3,10 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\AgeCategory;
-use Database\Factories\AgeCategoryFactory;
 use Illuminate\Database\Seeder;
-use App\Models\Country;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,7 +19,8 @@ class DatabaseSeeder extends Seeder
             AgeCategorySeeder::class,
             GenreSeeder::class,
             UserSeeder::class,
-            MovieSeeder::class
+            MovieSeeder::class,
+            CountryMovieSeeder::class,
         ]);
     }
 }

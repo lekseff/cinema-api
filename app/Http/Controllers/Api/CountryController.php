@@ -15,11 +15,10 @@ class CountryController extends Controller
      */
     public function index()
     {
-//        $data = Country::all(['id', 'name'])
-//            ->sortBy('name');
+        $data = Country::all(['id', 'name'])
+            ->sortBy('name');
 
-        $data = Country::all(['id', 'name'])->count();
-
+//        $data = Country::all(['id', 'name'])->count();
         // Получаем 5 случайныйх стран - для примера
 //        $country = $data->random(3)->pluck('name');
         return response($data);
