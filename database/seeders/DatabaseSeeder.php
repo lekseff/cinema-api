@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             MovieSeeder::class,
             CountryMovieSeeder::class,
+            GenreMovieSeeder::class,
         ]);
     }
 }

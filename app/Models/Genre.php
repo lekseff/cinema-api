@@ -17,10 +17,18 @@ class Genre extends Model
     static array $genres = [
         'Комедия ',
         'Фантастика',
+        'Драма',
         'Ужасы',
         'Боевик ',
         'Мелодрама',
-        'Мистика ',
-        'Другое ',
+        'Приключения',
+        'Семейный',
+        'Триллер',
+        'Детектив',
     ];
+
+    public function movies()
+    {
+        $this->belongsToMany(Movie::class);
+    }
 }

@@ -3,25 +3,20 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Country\CountryCollection;
 use App\Models\Country;
 use Illuminate\Http\Request;
 
 class CountryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        $data = Country::all(['id', 'name'])
-            ->sortBy('name');
+        $countries = Country::all(['id', 'name'])->sortBy('name');
 
-//        $data = Country::all(['id', 'name'])->count();
         // Получаем 5 случайныйх стран - для примера
 //        $country = $data->random(3)->pluck('name');
-        return response($data);
+        return new CountryCollection($countries);
     }
 
     /**

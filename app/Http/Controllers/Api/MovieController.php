@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\MovieCollection;
-use App\Http\Resources\MovieResource;
+use App\Http\Resources\Movie\MovieCollection;
+use App\Http\Resources\Movie\MovieResource;
 use App\Models\Movie;
 
 class MovieController extends Controller

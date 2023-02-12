@@ -17,7 +17,6 @@ class Country extends Model
         'Франция',
         'Новая Зеландия',
         'Великобритания',
-        'Другое',
     ];
 
     protected $hidden = [

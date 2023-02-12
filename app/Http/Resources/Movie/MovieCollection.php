@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Movie;
 
-use App\Models\AgeCategory;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class MovieCollection extends ResourceCollection

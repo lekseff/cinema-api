@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Movie;
 
 use App\Models\AgeCategory;
 use Illuminate\Http\Request;
@@ -28,11 +28,17 @@ class MovieResource extends JsonResource
     public function toArray($request): array
     {
 
-//        :FIXME: Посмотреть как можно получать данные стран без цикла
+//  :FIXME: Посмотреть как можно получать данные стран без цикла
         $countries = [];
         foreach ($this->countries as $country)
         {
            $countries[] = $country->name;
+        }
+
+        $genres = [];
+        foreach ($this->genres as $genre)
+        {
+            $genres[] = $genre->name;
         }
 
         return [
@@ -40,6 +46,7 @@ class MovieResource extends JsonResource
             'name' => $this->name,
             'age_category' => AgeCategory::class::find($this->age_category)->name,
             'countries' => $countries,
+            'genres' => $genres,
             'plot' => $this->plot,
             'actors' => $this->actors,
             'timeline' => $this->timeline,

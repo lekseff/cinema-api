@@ -31,4 +31,13 @@ class Movie extends Model
     {
         return $this->belongsToMany(Country::class);
     }
+
+    /**
+     * Все жанры фильма
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class);
+    }
 }

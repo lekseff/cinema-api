@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\CountryMovie;
+use App\Http\Controllers\Controller;
+use App\Models\GenreMovie;
 use Illuminate\Http\Request;
 
-class CountryMovieController extends Controller
+class GenreMovieController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +32,10 @@ class CountryMovieController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\CountryMovie  $countryMovie
+     * @param  \App\Models\GenreMovie  $genreMovie
      * @return \Illuminate\Http\Response
      */
-    public function show(CountryMovie $countryMovie)
+    public function show(GenreMovie $genreMovie)
     {
         //
     }
@@ -43,10 +44,10 @@ class CountryMovieController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CountryMovie  $countryMovie
+     * @param  \App\Models\GenreMovie  $genreMovie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CountryMovie $countryMovie)
+    public function update(Request $request, GenreMovie $genreMovie)
     {
         //
     }
@@ -54,10 +55,10 @@ class CountryMovieController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\CountryMovie  $countryMovie
+     * @param  \App\Models\GenreMovie  $genreMovie
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CountryMovie $countryMovie)
+    public function destroy(GenreMovie $genreMovie)
     {
         //
     }
