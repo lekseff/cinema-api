@@ -19,6 +19,6 @@ class MovieController extends Controller
     {
         // :FIXME Добавить валидацию и проверку на fail
         $movie = Movie::class::findOrFail($id);
-        return (new MovieResource($movie));
+        return new MovieResource($movie);
     }
 }

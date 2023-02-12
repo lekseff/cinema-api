@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\HallController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +16,15 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('countries', [\App\Http\Controllers\Api\CountryController::class, 'index']);
 
-Route::get('/movies', [\App\Http\Controllers\Api\MovieController::class, 'index'])->name('index.movies');
+Route::get('movies', [\App\Http\Controllers\Api\MovieController::class, 'index'])->name('index.movies');
 Route::get('movies/{id}', [\App\Http\Controllers\Api\MovieController::class, 'show'])->name('show.movie');
 
-Route::get('/genres', [\App\Http\Controllers\Api\GenreController::class, 'index'])->name('index.genres');
+Route::get('genres', [\App\Http\Controllers\Api\GenreController::class, 'index'])->name('index.genres');
+
+Route::apiResource('halls', HallController::class);
+
+
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
