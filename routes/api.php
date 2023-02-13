@@ -14,6 +14,8 @@ use App\Http\Controllers\Api\HallController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::get('cinema', [\App\Http\Controllers\Api\CinemaController::class, 'index'])->name('cinema');
+
 Route::get('countries', [\App\Http\Controllers\Api\CountryController::class, 'index']);
 
 Route::get('movies', [\App\Http\Controllers\Api\MovieController::class, 'index'])->name('index.movies');
@@ -22,6 +24,9 @@ Route::get('movies/{id}', [\App\Http\Controllers\Api\MovieController::class, 'sh
 Route::get('genres', [\App\Http\Controllers\Api\GenreController::class, 'index'])->name('index.genres');
 
 Route::apiResource('halls', HallController::class);
+
+Route::get('sessions', [\App\Http\Controllers\Api\SessionController::class, 'index'])->name('index.sessions');
+Route::get('sessions/{session}', [\App\Http\Controllers\Api\SessionController::class, 'show'])->name('show.session');
 
 
 

@@ -10,7 +10,8 @@ class GenreController extends Controller
 {
     public function index()
     {
-        $genres = Genre::all(['id', 'name'])->sortBy('name');
+//        $genres = Genre::all(['id', 'name'])->sortBy('name');
+        $genres = Genre::query()->orderBy('name')->get();
         return new GenreCollection($genres);
     }
 }

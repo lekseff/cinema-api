@@ -40,4 +40,13 @@ class Movie extends Model
     {
         return $this->belongsToMany(Genre::class);
     }
+
+    /**
+     * Все сеансы фильма
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sessions()
+    {
+        return $this->hasMany(Session::class, 'movie_id', 'id');
+    }
 }

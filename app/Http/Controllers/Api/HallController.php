@@ -13,7 +13,7 @@ class HallController extends Controller
 
     public function index()
     {
-        $halls = Hall::all();
+        $halls = Hall::query();
         return new HallCollection($halls);
 //        return response()->json($halls, 200);
     }

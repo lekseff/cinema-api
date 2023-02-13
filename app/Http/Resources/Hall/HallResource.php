@@ -29,7 +29,7 @@ class HallResource extends JsonResource
             'name' => $this->name,
             'rows' => $this->rows,
             'places' => $this->places,
-            'available' => boolval($this->available),
+            'available' => $this->available,
             'price' => $this->price,
             'price_vip' => $this->price_vip,
             'structure' => $this->structure,
