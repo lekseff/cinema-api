@@ -44,7 +44,8 @@ class MovieResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'age_category' => AgeCategory::class::find($this->age_category)->name,
+            'directors' => $this->directors,
+            'ageCategory' => AgeCategory::class::find($this->age_category)->name,
             'countries' => $countries,
             'genres' => $genres,
             'plot' => $this->plot,

@@ -14,6 +14,10 @@ class Session extends Model
         'updated_at'
     ];
 
+    protected $casts = [
+        'date' => 'datetime: Y-m-d H:i'
+    ];
+
 
     public function movie()
     {
