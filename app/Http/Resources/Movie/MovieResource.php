@@ -2,6 +2,9 @@
 
 namespace App\Http\Resources\Movie;
 
+use App\Http\Resources\Country\CountryResource;
+use App\Http\Resources\Genre\GenreCollection;
+use App\Http\Resources\Genre\GenreResource;
 use App\Models\AgeCategory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -11,10 +14,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property mixed $name
  * @property mixed $plot
  * @property mixed $logo
+ * @property mixed $genres
  * @property mixed $actors
  * @property mixed $timeline
- * @property mixed $age_category
  * @property mixed $countries
+ * @property mixed $directors
+ * @property mixed $age_category
  */
 class MovieResource extends JsonResource
 {
@@ -28,30 +33,32 @@ class MovieResource extends JsonResource
     public function toArray($request): array
     {
 
-//  :FIXME: Посмотреть как можно получать данные стран без цикла
-        $countries = [];
-        foreach ($this->countries as $country)
-        {
-           $countries[] = $country->name;
-        }
+//  :FIXME: Посмотреть как можно получать genres и countries без id
 
-        $genres = [];
-        foreach ($this->genres as $genre)
-        {
-            $genres[] = $genre->name;
-        }
+//        $countries = [];
+//        foreach ($this->countries as $country)
+//        {
+//           $countries[] = $country->name;
+//        }
 
+//        $genres = [];
+//        foreach ($this->genres as $genre)
+//        {
+//            $genres[] = $genre->name;
+//        }
+//        :FIXME Поправить и добавить веде logoMobile
         return [
             'id' => $this->id,
             'name' => $this->name,
             'directors' => $this->directors,
-            'ageCategory' => AgeCategory::class::find($this->age_category)->name,
-            'countries' => $countries,
-            'genres' => $genres,
-            'plot' => $this->plot,
             'actors' => $this->actors,
+            'genres' => GenreResource::collection($this->genres),
+            'countries' => CountryResource::collection($this->countries),
+            'ageCategory' => AgeCategory::class::find($this->age_category)->name,
             'timeline' => $this->timeline,
-            'logo' => $this->logo
+            'plot' => $this->plot,
+            'logo' => $this->logo,
+            'logoMobile' => $this->logo
         ];
     }
 

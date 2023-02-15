@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Movie\MovieCollection;
+use App\Http\Resources\Movie\MovieResource;
+use App\Http\Resources\Session\SessionResource;
 use App\Models\Hall;
 use App\Models\Movie;
 use App\Models\Session;
@@ -36,25 +39,27 @@ class CinemaController extends Controller
         // Все сеансы от текущей даты
         $sessions = Session::query()
             ->whereDate('date', '>=', new Carbon(now()))
-            ->get();
+            ->get(['id', 'movie_id', 'hall_id', 'date']);
 
+//  :FIXME: Тут поправить комменты, если все ок
         // Получаем сеансы только активных залов и группируем по фильмам
         $sessions = $sessions->filter(
             function ($value, $key) use ($activeHalls) {
                 return $activeHalls->contains('id', $value->hall_id);
             }
         )
-            ->flatten()
-            ->sortBy('date')
-            ->groupBy('movie_id')
-            ->sortDesc();
+//            ->flatten()
+            ->sortBy('date');
+//            ->groupBy('movie_id')
+//            ->sortDesc();
 
         // Фильмы для которых есть активные сеансы
-        $movies = Movie::query()->whereIn('id', $sessions->keys()->toArray())->get();
+        $movies = Movie::query()->whereIn('id', $sessions->groupBy('movie_id')->keys()->toArray())->get();
 
-        $key = collect(['movies', 'sessions', 'dates']);
-        $responseData = $key->combine([$movies, $sessions, $sessionsControl]);
-
-        return response($responseData, 200);
+        return response([
+            'movies' => MovieResource::collection($movies),
+            'sessions' => SessionResource::collection($sessions)->groupBy('movie_id'),
+            'dates' => $sessionsControl,
+        ], 200);
     }
 }

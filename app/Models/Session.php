@@ -15,7 +15,7 @@ class Session extends Model
     ];
 
     protected $casts = [
-        'date' => 'datetime: Y-m-d H:i'
+        'date' => 'datetime:Y-m-d H:i'
     ];
 
 
