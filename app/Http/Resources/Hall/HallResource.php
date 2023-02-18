@@ -31,7 +31,7 @@ class HallResource extends JsonResource
             'places' => $this->places,
             'available' => $this->available,
             'price' => $this->price,
-            'price_vip' => $this->price_vip,
+            'priceVip' => $this->price_vip,
             'structure' => $this->structure,
         ];
     }

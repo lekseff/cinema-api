@@ -12,6 +12,15 @@ class Hall extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'rows',
+        'places',
+        'price',
+        'price_vip',
+        'structure'
+    ];
+
     protected $hidden = [
         'created_at',
         'updated_at'

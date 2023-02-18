@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             MovieSeeder::class,
             CountryMovieSeeder::class,
             GenreMovieSeeder::class,
-            HallSeeder::class,
+//            HallSeeder::class,
         ]);
     }
 }
