@@ -41,7 +41,7 @@ class HallController extends Controller
      * Display the specified resource.
      *
      * @param \App\Models\Hall $hall
-     * //     * @return \Illuminate\Http\Response
+     * //     * @return HallResource
      */
     public function show(Hall $hall)
     {
@@ -55,10 +55,19 @@ class HallController extends Controller
      * @param \App\Models\Hall $hall
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Hall $hall)
+    public function update(UpdateHallRequest $request, Hall $hall)
     {
-//        $validated = $request->validated();
-        dd($request->all());
+        $validated = $request->validated();
+
+        // :FIXME Меняем priceVip на price_vip, чтобы добавить в таблицу (Может можно как-то проще это сделать)
+        if(isset($validated['priceVip']))
+        {
+            $validated = $request->safe()->merge(['price_vip' => $validated['priceVip']]);
+            unset($validated['priceVip']);
+            $hall->update($validated->all());
+        } else {
+            $hall->update($validated);
+        }
     }
 
     /**

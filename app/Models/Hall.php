@@ -17,6 +17,7 @@ class Hall extends Model
         'rows',
         'places',
         'price',
+        'available',
         'price_vip',
         'structure'
     ];

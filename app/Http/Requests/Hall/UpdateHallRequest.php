@@ -17,6 +17,18 @@ class UpdateHallRequest extends FormRequest
     }
 
     /**
+     * Получить сообщения об ошибках для определенных правил валидации.
+     *
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+            'name' => 'Зал с таким именем уже существует',
+        ];
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array<string, mixed>
