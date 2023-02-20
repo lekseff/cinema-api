@@ -9,6 +9,17 @@ class Movie extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'logo',
+        'plot',
+        'actors',
+        'timeline',
+        'directors',
+        'logoMobile',
+        'ageCategory',
+    ];
+
     protected $hidden = [
         'created_at',
         'updated_at'

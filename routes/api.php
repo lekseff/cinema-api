@@ -16,15 +16,16 @@ use App\Http\Controllers\Api\HallController;
 */
 Route::get('cinema', [\App\Http\Controllers\Api\CinemaController::class, 'index'])->name('cinema');
 
+
+Route::apiResource('age-category', \App\Http\Controllers\Api\AgeCategoryController::class);
+Route::apiResource('halls', HallController::class);
+Route::apiResource('movies', \App\Http\Controllers\Api\MovieController::class);
+Route::get('genres', [\App\Http\Controllers\Api\GenreController::class, 'index'])->name('index.genres');
 Route::get('countries', [\App\Http\Controllers\Api\CountryController::class, 'index']);
 
-//Route::get('movies', [\App\Http\Controllers\Api\MovieController::class, 'index'])->name('index.movies');
-//Route::get('movies/{id}', [\App\Http\Controllers\Api\MovieController::class, 'show'])->name('show.movie');
 
-Route::get('genres', [\App\Http\Controllers\Api\GenreController::class, 'index'])->name('index.genres');
 
-Route::apiResource('movies', \App\Http\Controllers\Api\MovieController::class);
-Route::apiResource('halls', HallController::class);
+
 
 Route::get('sessions', [\App\Http\Controllers\Api\SessionController::class, 'index'])->name('index.sessions');
 Route::get('sessions/{session}', [\App\Http\Controllers\Api\SessionController::class, 'show'])->name('show.session');
