@@ -7,6 +7,7 @@ use App\Http\Resources\Movie\MovieCollection;
 use App\Http\Resources\Movie\MovieResource;
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
@@ -29,7 +30,11 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+//        dd($data['file']);
+        $url = Storage::putFile('/public/img', ($data['file']));
+//        $url = $request->file('file')->store('img');
+        return response($url);
     }
 
     /**
@@ -61,8 +66,8 @@ class MovieController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Movie $movie)
     {
-        //
+        $movie->delete();
     }
 }

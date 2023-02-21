@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('country_movie', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('country_id')->constrained();
-            $table->foreignId('movie_id')->constrained();
+            $table->foreignId('country_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('movie_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
