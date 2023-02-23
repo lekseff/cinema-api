@@ -19,10 +19,10 @@ class DatabaseSeeder extends Seeder
             AgeCategorySeeder::class,
             GenreSeeder::class,
             UserSeeder::class,
-            MovieSeeder::class,
-            CountryMovieSeeder::class,
-            GenreMovieSeeder::class,
+//            MovieSeeder::class,
 //            HallSeeder::class,
+//            CountryMovieSeeder::class,
+//            GenreMovieSeeder::class,
         ]);
     }
 }

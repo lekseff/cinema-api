@@ -11,9 +11,20 @@ class CreateMovieRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
+    }
+
+    /**
+     * Сообщения об ошибке
+     * @return string[]
+     */
+    public function messages(): array
+    {
+        return [
+            'name' => 'Фильм с таким названием уже существует'
+        ];
     }
 
     /**
@@ -21,19 +32,19 @@ class CreateMovieRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => ['required', 'string', 'unique:movies', 'max:250'],
             'directors' => ['required', 'string', 'max:250'],
-            'actors' =>  ['required', 'string', 'max:250'],
-            'countries' => ['required', 'exists:countries,id'],
-            'genres' => ['required', 'exists:genres,id'],
+            'actors' => ['required', 'string', 'max:250'],
+            'countries' => ['required', 'array'],
+            'genres' => ['required', 'array'],
             'ageCategory' => ['required', 'exists:age_categories,id'],
             'plot' => ['required', 'string', 'max:4000'],
             'timeline' => ['required', 'integer', 'min:1', 'max:500'],
-            'logo' => [],
-            'logoMobile' => [],
+            'logo' => ['required', 'file', 'image', 'max:2048'],
+            'logoMobile' => ['required', 'file', 'image', 'max:1024'],
         ];
     }
 }

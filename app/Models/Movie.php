@@ -16,8 +16,8 @@ class Movie extends Model
         'actors',
         'timeline',
         'directors',
-        'logoMobile',
-        'ageCategory',
+        'logo_mobile',
+        'age_category',
     ];
 
     protected $hidden = [

@@ -57,8 +57,8 @@ class MovieResource extends JsonResource
             'ageCategory' => AgeCategory::class::find($this->age_category)->name,
             'timeline' => $this->timeline,
             'plot' => $this->plot,
-            'logo' => $this->logo,
-            'logoMobile' => $this->logo
+            'logo' => url('/storage/' . $this->logo),
+            'logoMobile' => url('/storage/' . $this->logo),
         ];
     }
 

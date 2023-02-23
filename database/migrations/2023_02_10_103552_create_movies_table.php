@@ -22,8 +22,7 @@ return new class extends Migration
             $table->string('actors');
             $table->unsignedInteger('timeline');
             $table->string('logo', 300);
-//            :FIXME: Добавить поле
-//            $table->string('logo_mobile', 300);
+            $table->string('logo_mobile', 300);
             $table->timestamps();
         });
     }

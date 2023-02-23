@@ -23,6 +23,7 @@ class MovieSeeder extends Seeder
             'actors' => 'Шейлин Вудли, Тео Джеймс, Джай Кортни',
             'timeline' => 134,
             'logo' => fake()->imageUrl(400, 800, 'film'),
+            'logo_mobile' => fake()->imageUrl(400, 200, 'film'),
             'age_category' => 3,
         ]);
         Movie::factory()->create([
@@ -32,6 +33,7 @@ class MovieSeeder extends Seeder
             'actors' => 'Дуэйн Джонсон, Джош Хатчерсон, Ванесса Энн Хадженс',
             'timeline' => 94,
             'logo' => fake()->imageUrl(400, 800, 'film'),
+            'logo_mobile' => fake()->imageUrl(400, 200, 'film'),
             'age_category' => 1,
         ]);
         Movie::factory()->create([
@@ -41,6 +43,7 @@ class MovieSeeder extends Seeder
             'actors' => 'Элайджа Вуд, Иэн Маккеллен, Вигго Мортенсен',
             'timeline' => 179,
             'logo' => fake()->imageUrl(400, 800, 'film'),
+            'logo_mobile' => fake()->imageUrl(400, 200, 'film'),
             'age_category' => 3,
         ]);
         Movie::factory()->create([
@@ -50,6 +53,7 @@ class MovieSeeder extends Seeder
             'actors' => 'Хоакин Феникс, Роберт Де Ниро, Зази Битц',
             'timeline' => 122,
             'logo' => fake()->imageUrl(400, 800, 'film'),
+            'logo_mobile' => fake()->imageUrl(400, 200, 'film'),
             'age_category' => 5,
         ]);
         Movie::factory()->create([
@@ -59,6 +63,7 @@ class MovieSeeder extends Seeder
             'actors' => 'Леонардо ДиКаприо, Джозеф Гордон-Левитт',
             'timeline' => 148,
             'logo' => fake()->imageUrl(400, 800, 'film'),
+            'logo_mobile' => fake()->imageUrl(400, 200, 'film'),
             'age_category' => 3,
         ]);
     }

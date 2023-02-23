@@ -11,6 +11,11 @@ class CountryMovie extends Model
 
     public $table = 'country_movie';
 
+    protected $fillable = [
+        'country_id',
+        'movie_id',
+    ];
+
     protected $hidden = [
         'created_at',
         'updated_at'

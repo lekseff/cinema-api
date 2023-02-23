@@ -11,6 +11,11 @@ class GenreMovie extends Model
 
     public $table = 'genre_movie';
 
+    protected $fillable = [
+        'genre_id',
+        'movie_id',
+    ];
+
     protected $hidden = [
         'created_at',
         'updated_at',
