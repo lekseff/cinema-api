@@ -87,7 +87,7 @@ class MovieController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Movie $movie
+     * @param Movie $movie
      * @return MovieResource
      */
     public function show(Movie $movie)

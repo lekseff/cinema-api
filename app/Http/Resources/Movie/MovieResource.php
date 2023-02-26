@@ -58,7 +58,7 @@ class MovieResource extends JsonResource
             'timeline' => $this->timeline,
             'plot' => $this->plot,
             'logo' => url('/storage/' . $this->logo),
-            'logoMobile' => url('/storage/' . $this->logo),
+            'logoMobile' => url('/storage/' . $this->logo_mobile),
         ];
     }
 

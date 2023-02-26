@@ -2,7 +2,14 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\Api\GenreController;
 use App\Http\Controllers\Api\HallController;
+use App\Http\Controllers\Api\MovieController;
+use App\Http\Controllers\Api\CinemaController;
+use App\Http\Controllers\Api\SessionController;
+use App\Http\Controllers\Api\CountryController;
+use App\Http\Controllers\Api\AgeCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,24 +21,23 @@ use App\Http\Controllers\Api\HallController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('cinema', [\App\Http\Controllers\Api\CinemaController::class, 'index'])->name('cinema');
+Route::get('cinema', [CinemaController::class, 'index'])->name('cinema');
 
-
-Route::apiResource('age-category', \App\Http\Controllers\Api\AgeCategoryController::class);
 Route::apiResource('halls', HallController::class);
-Route::apiResource('movies', \App\Http\Controllers\Api\MovieController::class);
-Route::get('genres', [\App\Http\Controllers\Api\GenreController::class, 'index'])->name('index.genres');
-Route::get('countries', [\App\Http\Controllers\Api\CountryController::class, 'index']);
+Route::apiResource('movies', MovieController::class);
+Route::get('sessions/timetable', [SessionController::class, 'timetable']);
+Route::apiResource('sessions', SessionController::class);
+Route::apiResource('age-category', AgeCategoryController::class);
+
+
+Route::get('genres', [GenreController::class, 'index'])->name('index.genres');
+Route::get('countries', [CountryController::class, 'index']);
 
 
 
 
-
-Route::get('sessions', [\App\Http\Controllers\Api\SessionController::class, 'index'])->name('index.sessions');
-Route::get('sessions/{session}', [\App\Http\Controllers\Api\SessionController::class, 'show'])->name('show.session');
-
-
-
+//Route::get('sessions', [\App\Http\Controllers\Api\SessionController::class, 'index'])->name('index.sessions');
+//Route::get('sessions/{session}', [\App\Http\Controllers\Api\SessionController::class, 'show'])->name('show.session');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
