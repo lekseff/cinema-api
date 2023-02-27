@@ -3,15 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Movie\MovieCollection;
 use App\Http\Resources\Movie\MovieResource;
 use App\Http\Resources\Session\SessionResource;
 use App\Models\Hall;
 use App\Models\Movie;
 use App\Models\Session;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class CinemaController extends Controller
 {
@@ -48,10 +45,7 @@ class CinemaController extends Controller
                 return $activeHalls->contains('id', $value->hall_id);
             }
         )
-//            ->flatten()
             ->sortBy('date');
-//            ->groupBy('movie_id')
-//            ->sortDesc();
 
         // Фильмы для которых есть активные сеансы
         $movies = Movie::query()->whereIn('id', $sessions->groupBy('movie_id')->keys()->toArray())->get();

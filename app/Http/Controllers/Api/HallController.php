@@ -17,7 +17,6 @@ class HallController extends Controller
     {
         $halls = Hall::query()->get();
         return new HallCollection($halls);
-//        return response()->json($halls, 200);
     }
 
     /**
@@ -60,8 +59,7 @@ class HallController extends Controller
         $validated = $request->validated();
 
         // :FIXME Меняем priceVip на price_vip, чтобы добавить в таблицу (Может можно как-то проще это сделать)
-        if(isset($validated['priceVip']))
-        {
+        if (isset($validated['priceVip'])) {
             $validated = $request->safe()->merge(['price_vip' => $validated['priceVip']]);
             unset($validated['priceVip']);
             $hall->update($validated->all());

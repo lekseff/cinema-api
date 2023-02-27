@@ -60,12 +60,11 @@ class MovieController extends Controller
         $movie->update([
             'logo' => $logoPath,
             'logo_mobile' => $logoMobilePath,
-            ]);
+        ]);
 
         // Добавляем страны в связывающую таблицу
         $countries = $validated['countries'];
-        foreach ($countries as $country)
-        {
+        foreach ($countries as $country) {
             CountryMovie::class::create([
                 'movie_id' => $movie->id,
                 'country_id' => $country,

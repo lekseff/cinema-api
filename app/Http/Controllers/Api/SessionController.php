@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 
+
 class SessionController extends Controller
 {
     /**
@@ -88,6 +89,10 @@ class SessionController extends Controller
         $session->delete();
     }
 
+    /**
+     * Получает все сеансы и в формате для timeline админки
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
+     */
     public function timetable()
     {
 
@@ -116,6 +121,6 @@ class SessionController extends Controller
             $response[$key] = collect($item)->sortByDesc('hall')->groupBy('hallId');//
         }
 
-        return response($response);
+        return response($response, 200);
     }
 }
