@@ -51,10 +51,10 @@ class MovieController extends Controller
 
         //  При успешном сохранении в базу сохраняем фото в папку с id фильма
         $logoPath = Storage::disk('public')
-            ->putFile("images/movies/${movie['id']}", ($validated['logo']));
+            ->putFile("images/movies/${movie['id']}", $validated['logo']);
 
         $logoMobilePath = Storage::disk('public')
-            ->putFile("images/movies/${movie['id']}", ($validated['logoMobile']));
+            ->putFile("images/movies/${movie['id']}", $validated['logoMobile']);
 
         //  Обновляем пути к фото
         $movie->update([

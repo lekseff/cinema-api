@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Movie\MovieResource;
 use App\Http\Resources\Session\SessionResource;
+use App\Http\Resources\Slider\SliderResource;
 use App\Models\Hall;
 use App\Models\Movie;
 use App\Models\Session;
+use App\Models\Slider;
 use Carbon\Carbon;
 
 class CinemaController extends Controller
@@ -27,6 +29,9 @@ class CinemaController extends Controller
                 'date' => $date
             ];
         }
+
+        // Получаем элементы слайдера
+        $slides = Slider::query()->get();
 
         // Активные залы
         $activeHalls = Hall::query()
@@ -52,6 +57,7 @@ class CinemaController extends Controller
 
         return response([
             'movies' => MovieResource::collection($movies),
+            'slider' => SliderResource::collection($slides),
             'sessions' => SessionResource::collection($sessions)->groupBy('movie_id'),
             'dates' => $sessionsControl,
         ], 200);

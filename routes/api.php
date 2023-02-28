@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\CinemaController;
 use App\Http\Controllers\Api\SessionController;
 use App\Http\Controllers\Api\CountryController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\SliderController;
 use App\Http\Controllers\Api\AgeCategoryController;
 
 /*
@@ -27,6 +28,7 @@ Route::get('cinema', [CinemaController::class, 'index'])->name('cinema');
 Route::apiResource('halls', HallController::class);
 Route::apiResource('movies', MovieController::class);
 Route::apiResource('age-category', AgeCategoryController::class);
+Route::apiResource('slider', SliderController::class);
 
 Route::get('sessions/timetable', [SessionController::class, 'timetable']);
 Route::apiResource('sessions', SessionController::class);
