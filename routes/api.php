@@ -38,12 +38,12 @@ Route::get('countries', [CountryController::class, 'index']);
 Route::get('genres', [GenreController::class, 'index'])->name('index.genres');
 Route::post('orders/confirm', [OrderController::class, 'confirm'])->name('orders.confirm');
 
-
+//Route::post('/login')
 
 
 //Route::get('sessions', [\App\Http\Controllers\Api\SessionController::class, 'index'])->name('index.sessions');
 //Route::get('sessions/{session}', [\App\Http\Controllers\Api\SessionController::class, 'show'])->name('show.session');
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->get('/test', function (Request $request) {
+    return 'User sanctum';
 });
