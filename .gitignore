@@ -16,6 +16,14 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-/storage/app/public/images
-public/storage/images
+
+/storage/app/public/images/movies/*
+/storage/app/public/images/slider/*
+
+public/storage/images/movies/*
+public/storage/images/slider/*
+
+public/images/movies/*
+public/images/slider/*
+
 public/images
