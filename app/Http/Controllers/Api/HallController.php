@@ -32,7 +32,7 @@ class HallController extends Controller
     {
         $validated = $request->validated();
 
-// :FIXME Меняем priceVip на price_vip, чтобы добавить в таблицу (Может можно как-то проще это сделать)
+// :FIXME Меняем priceVip на price_vip, чтобы добавить в таблицу
         $validated = $request->safe()->merge(['price_vip' => $validated['priceVip']]);
         unset($validated['priceVip']);
 
@@ -61,10 +61,11 @@ class HallController extends Controller
     {
         $validated = $request->validated();
 
-        // :FIXME Меняем priceVip на price_vip, чтобы добавить в таблицу (Может можно как-то проще это сделать)
+        // :FIXME Меняем priceVip на price_vip, чтобы добавить в таблицу
         if (isset($validated['priceVip'])) {
             $validated = $request->safe()->merge(['price_vip' => $validated['priceVip']]);
             unset($validated['priceVip']);
+
             $hall->update($validated->all());
         } else {
             $hall->update($validated);
