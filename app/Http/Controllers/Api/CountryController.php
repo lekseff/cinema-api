@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Resources\Country\CountryCollection;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Country;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\Country\CountryCollection;
 
 class CountryController extends Controller
 {
@@ -14,7 +15,7 @@ class CountryController extends Controller
         $this->middleware('auth:sanctum', ['except' => ['index', 'show']]);
     }
 
-    public function index()
+    public function index(): CountryCollection
     {
         $countries = Country::all(['id', 'name'])->sortBy('name');
 
@@ -26,10 +27,10 @@ class CountryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
         //
     }
@@ -37,10 +38,10 @@ class CountryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Country $country
-     * @return \Illuminate\Http\Response
+     * @param Country $country
+     * @return Response
      */
-    public function show(Country $country)
+    public function show(Country $country): Response
     {
         //
     }
@@ -48,11 +49,11 @@ class CountryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Country $country
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Country $country
+     * @return Response
      */
-    public function update(Request $request, Country $country)
+    public function update(Request $request, Country $country): Response
     {
         //
     }
@@ -60,10 +61,10 @@ class CountryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Country $country
-     * @return \Illuminate\Http\Response
+     * @param Country $country
+     * @return Response
      */
-    public function destroy(Country $country)
+    public function destroy(Country $country): Response
     {
         //
     }

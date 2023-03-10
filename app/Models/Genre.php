@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Genre extends Model
 {
@@ -14,21 +14,8 @@ class Genre extends Model
         'updated_at'
     ];
 
-    static array $genres = [
-        'Комедия ',
-        'Фантастика',
-        'Драма',
-        'Ужасы',
-        'Боевик ',
-        'Мелодрама',
-        'Приключения',
-        'Семейный',
-        'Триллер',
-        'Детектив',
-    ];
-
-    public function movies()
+    public function movies(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        $this->belongsToMany(Movie::class);
+        return $this->belongsToMany(Movie::class);
     }
 }

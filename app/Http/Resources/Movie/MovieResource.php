@@ -20,10 +20,10 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property mixed $countries
  * @property mixed $directors
  * @property mixed $age_category
+ * @property mixed $logo_mobile
  */
 class MovieResource extends JsonResource
 {
-
     /**
      * Transform the resource into an array.
      *
@@ -32,21 +32,6 @@ class MovieResource extends JsonResource
      */
     public function toArray($request): array
     {
-
-//  :FIXME: Посмотреть как можно получать genres и countries без id
-
-//        $countries = [];
-//        foreach ($this->countries as $country)
-//        {
-//           $countries[] = $country->name;
-//        }
-
-//        $genres = [];
-//        foreach ($this->genres as $genre)
-//        {
-//            $genres[] = $genre->name;
-//        }
-//        :FIXME Поправить и добавить веде logoMobile
         return [
             'id' => $this->id,
             'name' => $this->name,
@@ -61,5 +46,4 @@ class MovieResource extends JsonResource
             'logoMobile' => url('/storage/' . $this->logo_mobile),
         ];
     }
-
 }

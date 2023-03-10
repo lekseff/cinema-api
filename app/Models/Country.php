@@ -2,29 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Country extends Model
 {
     use HasFactory;
-
-    static array $countries = [
-        'США',
-        'Индия',
-        'Россия',
-        'Канада',
-        'Франция',
-        'Новая Зеландия',
-        'Великобритания',
-    ];
 
     protected $hidden = [
         'created_at',
         'updated_at'
     ];
 
-    public function movies()
+    public function movies(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Movie::class);
     }

@@ -11,7 +11,7 @@ class UpdateHallRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -33,9 +33,8 @@ class UpdateHallRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
-//        :FIXME: Поправить json валидацию для structure
         return [
             'name' => ['string', 'unique:halls', 'max:50'],
             'rows' => ['integer', 'min:1', 'max:50'],

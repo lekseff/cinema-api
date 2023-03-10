@@ -6,6 +6,7 @@ use App\Models\AgeCategory;
 use App\Models\Country;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class AgeCategorySeeder extends Seeder
 {
@@ -16,10 +17,12 @@ class AgeCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        foreach (AgeCategory::$categories as $category) {
-            AgeCategory::factory()->create(
-                ['name' => $category]
-            );
-        }
+        AgeCategory::factory()->createMany([
+            ['name' => '0+'],
+            ['name' => '6+'],
+            ['name' => '12+'],
+            ['name' => '16+'],
+            ['name' => '18+'],
+        ]);
     }
 }

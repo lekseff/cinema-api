@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\Movie\MovieResource;
-use App\Http\Resources\Session\SessionResource;
-use App\Http\Resources\Slider\SliderResource;
+use Carbon\Carbon;
 use App\Models\Hall;
 use App\Models\Movie;
-use App\Models\Session;
 use App\Models\Slider;
-use Carbon\Carbon;
+use App\Models\Session;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\Movie\MovieResource;
+use App\Http\Resources\Slider\SliderResource;
+use App\Http\Resources\Session\SessionResource;
+
 
 class CinemaController extends Controller
 {
-    public function index()
+    public function index(): \Illuminate\Http\Response
     {
         // Фильтр по дням
         $sessionsControl = [];

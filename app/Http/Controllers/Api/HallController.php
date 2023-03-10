@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Hall;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Hall\HallResource;
+use App\Http\Resources\Hall\HallCollection;
 use App\Http\Requests\Hall\CreateHallRequest;
 use App\Http\Requests\Hall\UpdateHallRequest;
-use App\Http\Resources\Hall\HallCollection;
-use App\Http\Resources\Hall\HallResource;
-use App\Models\Hall;
-use Illuminate\Http\Request;
 
 class HallController extends Controller
 {
@@ -17,7 +16,7 @@ class HallController extends Controller
         $this->middleware('auth:sanctum', ['except' => ['index', 'show']]);
     }
 
-    public function index()
+    public function index(): HallCollection
     {
         $halls = Hall::query()->get();
         return new HallCollection($halls);
@@ -26,10 +25,10 @@ class HallController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param CreateHallRequest $request
+     * @return void
      */
-    public function store(CreateHallRequest $request)
+    public function store(CreateHallRequest $request): void
     {
         $validated = $request->validated();
 
@@ -43,10 +42,10 @@ class HallController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Hall $hall
-     * //     * @return HallResource
+     * @param Hall $hall
+     * @return HallResource
      */
-    public function show(Hall $hall)
+    public function show(Hall $hall): HallResource
     {
         return new HallResource($hall);
     }
@@ -54,11 +53,11 @@ class HallController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Hall $hall
-     * @return \Illuminate\Http\Response
+     * @param UpdateHallRequest $request
+     * @param Hall $hall
+     * @return void
      */
-    public function update(UpdateHallRequest $request, Hall $hall)
+    public function update(UpdateHallRequest $request, Hall $hall): void
     {
         $validated = $request->validated();
 
@@ -75,10 +74,10 @@ class HallController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Hall $hall
-     * @return \Illuminate\Http\Response
+     * @param Hall $hall
+     * @return void
      */
-    public function destroy(Hall $hall)
+    public function destroy(Hall $hall): void
     {
         $hall->delete();
     }

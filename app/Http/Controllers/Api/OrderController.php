@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Session;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderConfirmRequest;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
-use App\Models\Session;
 
 class OrderController extends Controller
 {
-    public function confirm(OrderConfirmRequest $request)
+    public function confirm(OrderConfirmRequest $request): Response
     {
         //  id выбранных мест, id сеанса,
         $validated = $request->validated();
@@ -27,7 +28,7 @@ class OrderController extends Controller
         }, $places);
 
 
-        $update = $session->update([
+        $session->update([
             'places' => $newPlaces
         ]);
 

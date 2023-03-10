@@ -11,7 +11,7 @@ class CreateHallRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -35,7 +35,6 @@ class CreateHallRequest extends FormRequest
      */
     public function rules(): array
     {
-        //        :FIXME: Поправить json валидацию для structure
         return [
             'name' => ['required', 'string', 'unique:halls', 'max:50'],
             'rows' => ['required', 'integer', 'min:1', 'max:50'],

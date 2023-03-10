@@ -2,28 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class AgeCategory extends Model
 {
     use HasFactory;
 
     protected $fillable = ['name'];
+
     protected $hidden = [
         'created_at',
         'updated_at'
     ];
 
-    static array $categories = [
-        '0+',
-        '6+',
-        '12+',
-        '16+',
-        '18+',
-    ];
-
-    public function movies()
+    public function movies(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Movie::class, 'age_category', 'id');
     }

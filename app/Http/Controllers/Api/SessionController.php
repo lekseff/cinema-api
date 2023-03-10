@@ -20,12 +20,13 @@ class SessionController extends Controller
     {
         $this->middleware('auth:sanctum', ['except' => ['index', 'show']]);
     }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function index()
+    public function index(): Response
     {
         $sessions = Session::query()->get();
 
@@ -35,10 +36,10 @@ class SessionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param CeateSessionRequest $request
+     * @return Response
      */
-    public function store(CeateSessionRequest $request)
+    public function store(CeateSessionRequest $request): Response
     {
         $validated = $request->validated();
 
@@ -47,7 +48,6 @@ class SessionController extends Controller
 
         $places = Hall::class::find($validated['hallId'], 'structure');
 
-//        dd($places['structure']);
         $data = [
             'movie_id' => $validated['movieId'],
             'hall_id' => $validated['hallId'],
@@ -66,7 +66,7 @@ class SessionController extends Controller
      * @param Session $session
      * @return Response
      */
-    public function show(Session $session)
+    public function show(Session $session): Response
     {
         return response($session->toArray(), 200);
     }
@@ -74,11 +74,11 @@ class SessionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): Response
     {
         //
     }
@@ -86,21 +86,20 @@ class SessionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param Session $session
+     * @return void
      */
-    public function destroy(Session $session)
+    public function destroy(Session $session): void
     {
         $session->delete();
     }
 
     /**
      * Получает все сеансы и в формате для timeline админки
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
+     * @return Response
      */
-    public function timetable()
+    public function timetable(): Response
     {
-
         $sessions = Session::query()->get(['id', 'movie_id', 'hall_id', 'date']);
 
 // Формируем структуру для ответа
@@ -109,7 +108,7 @@ class SessionController extends Controller
             $data[] = [
                 'id' => $session['id'],
                 'hallId' => $session['hall_id'],
-                'movieName' => Movie::find($session['movie_id'])->name,
+                'movieName' => Movie::class::find($session['movie_id'])->name,
                 'hallName' => Hall::class::find($session['hall_id'])->name,
                 'date' => $session['date'],
                 'time' => $session['date']->format('H:i'),

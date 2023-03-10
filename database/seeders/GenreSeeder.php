@@ -15,10 +15,17 @@ class GenreSeeder extends Seeder
      */
     public function run(): void
     {
-        foreach (Genre::$genres as $genre) {
-            Genre::factory()->create(
-                ['name' => $genre]
-            );
-        }
+        Genre::factory()->createMany([
+            ['name' => 'Комедия'],
+            ['name' => 'Фантастика'],
+            ['name' => 'Драма'],
+            ['name' => 'Ужасы'],
+            ['name' => 'Боевик'],
+            ['name' => 'Мелодрама'],
+            ['name' => 'Приключения'],
+            ['name' => 'Семейный'],
+            ['name' => 'Триллер'],
+            ['name' => 'Детектив'],
+        ]);
     }
 }

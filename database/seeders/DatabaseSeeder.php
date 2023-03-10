@@ -12,17 +12,13 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $this->call([
             CountrySeeder::class,
             AgeCategorySeeder::class,
             GenreSeeder::class,
             UserSeeder::class,
-//            MovieSeeder::class,
-//            HallSeeder::class,
-//            CountryMovieSeeder::class,
-//            GenreMovieSeeder::class,
         ]);
     }
 }

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Slider\CreateSliderRequest;
-use App\Http\Resources\Slider\SliderResource;
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Resources\Slider\SliderResource;
+use App\Http\Requests\Slider\CreateSliderRequest;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class SliderController extends Controller
 {
@@ -19,9 +21,9 @@ class SliderController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      */
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
         $slides = Slider::query()->get();
 
@@ -31,10 +33,10 @@ class SliderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param CreateSliderRequest $request
+     * @return Response
      */
-    public function store(CreateSliderRequest $request)
+    public function store(CreateSliderRequest $request): Response
     {
         $validated = $request->validated();
 
@@ -52,10 +54,10 @@ class SliderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Slider $slider
-     * @return \Illuminate\Http\Response
+     * @param Slider $slider
+     * @return Response
      */
-    public function show(Slider $slider)
+    public function show(Slider $slider): Response
     {
         //
     }
@@ -63,11 +65,11 @@ class SliderController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Slider $slider
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Slider $slider
+     * @return Response
      */
-    public function update(Request $request, Slider $slider)
+    public function update(Request $request, Slider $slider): Response
     {
         //
     }
@@ -75,10 +77,10 @@ class SliderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Slider $slider
-     * @return \Illuminate\Http\Response
+     * @param Slider $slider
+     * @return void
      */
-    public function destroy(Slider $slider)
+    public function destroy(Slider $slider): void
     {
         $slider->delete();
     }
