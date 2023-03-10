@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Slider;
+use App\Services\SliderService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
@@ -26,7 +27,6 @@ class SliderController extends Controller
     public function index(): AnonymousResourceCollection
     {
         $slides = Slider::query()->get();
-
         return SliderResource::collection($slides);
     }
 
@@ -34,20 +34,13 @@ class SliderController extends Controller
      * Store a newly created resource in storage.
      *
      * @param CreateSliderRequest $request
+     * @param SliderService $service
      * @return Response
      */
-    public function store(CreateSliderRequest $request): Response
+    public function store(CreateSliderRequest $request, SliderService $service): Response
     {
         $validated = $request->validated();
-
-        $slide = Slider::class::create($validated);
-
-       $photoPath = Storage::disk('public')->putFile('images/slider', $validated['photo']);
-
-       $slide->update([
-           'photo' => $photoPath
-       ]);
-
+        $slide = $service->create($validated);
         return response($slide, 200);
     }
 
