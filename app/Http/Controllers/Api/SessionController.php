@@ -4,13 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Session\CeateSessionRequest;
-
-use App\Models\Hall;
-use App\Models\Movie;
 use App\Models\Session;
+use App\Services\SessionService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Carbon;
 
 
 class SessionController extends Controller
@@ -29,7 +26,6 @@ class SessionController extends Controller
     public function index(): Response
     {
         $sessions = Session::query()->get();
-
         return response($sessions, 200);
     }
 
@@ -37,26 +33,13 @@ class SessionController extends Controller
      * Store a newly created resource in storage.
      *
      * @param CeateSessionRequest $request
+     * @param SessionService $service
      * @return Response
      */
-    public function store(CeateSessionRequest $request): Response
+    public function store(CeateSessionRequest $request, SessionService $service): Response
     {
         $validated = $request->validated();
-
-        // Создаем объект даты
-        $date = new Carbon($validated['date'] . $validated['time']);
-
-        $places = Hall::class::find($validated['hallId'], 'structure');
-
-        $data = [
-            'movie_id' => $validated['movieId'],
-            'hall_id' => $validated['hallId'],
-            'date' => $date,
-            'places' => $places['structure'],
-        ];
-
-        $session = Session::query()->create($data);
-
+        $session = $service->create($validated);
         return response($session, 200);
     }
 
@@ -95,36 +78,13 @@ class SessionController extends Controller
     }
 
     /**
-     * Получает все сеансы и в формате для timeline админки
+     * Возвращает сеансы в формате для timeline админки
+     * @param SessionService $service
      * @return Response
      */
-    public function timetable(): Response
+    public function timetable(SessionService $service): Response
     {
-        $sessions = Session::query()->get(['id', 'movie_id', 'hall_id', 'date']);
-
-// Формируем структуру для ответа
-        $data = [];
-        foreach ($sessions as $session) {
-            $data[] = [
-                'id' => $session['id'],
-                'hallId' => $session['hall_id'],
-                'movieName' => Movie::class::find($session['movie_id'])->name,
-                'hallName' => Hall::class::find($session['hall_id'])->name,
-                'date' => $session['date'],
-                'time' => $session['date']->format('H:i'),
-                'calendarDate' => $session['date']->format('Y-m-d'),
-            ];
-        }
-
-//  Сортируем и группируем по дате
-        $collection = collect($data)->sortBy('date')->groupBy('calendarDate');
-
-//  Группируем до залам внутри дат
-        $response = [];
-        foreach ($collection as $key => $item) {
-            $response[$key] = collect($item)->sortByDesc('hall')->groupBy('hallId');//
-        }
-
+        $response = $service->sessionsFromTimeline();
         return response($response, 200);
     }
 }

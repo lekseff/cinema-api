@@ -61,7 +61,7 @@ class HallController extends Controller
     {
         $validated = $request->validated();
 
-        // :FIXME Меняем priceVip на price_vip, чтобы добавить в таблицу
+        // Меняем priceVip на price_vip, чтобы добавить в таблицу
         if (isset($validated['priceVip'])) {
             $validated = $request->safe()->merge(['price_vip' => $validated['priceVip']]);
             unset($validated['priceVip']);
