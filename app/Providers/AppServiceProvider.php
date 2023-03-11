@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\CinemaService;
 use App\Services\MovieService;
 use App\Services\SessionService;
 use App\Services\SliderService;
@@ -24,6 +25,9 @@ class AppServiceProvider extends ServiceProvider
         });
         $this->app->bind(SliderService::class, function ($app) {
             return new SliderService();
+        });
+        $this->app->bind(CinemaService::class, function ($app) {
+            return new CinemaService();
         });
     }
 

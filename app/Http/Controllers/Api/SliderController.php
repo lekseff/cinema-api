@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Slider;
-use App\Services\SliderService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Services\SliderService;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\Slider\SliderResource;
 use App\Http\Requests\Slider\CreateSliderRequest;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
