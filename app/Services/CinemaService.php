@@ -2,15 +2,15 @@
 
 namespace App\Services;
 
-use App\Http\Resources\Movie\MovieResource;
-use App\Http\Resources\Session\SessionResource;
-use App\Http\Resources\Slider\SliderResource;
+use Carbon\Carbon;
 use App\Models\Hall;
 use App\Models\Movie;
-use App\Models\Session;
 use App\Models\Slider;
-use Carbon\Carbon;
+use App\Models\Session;
+use App\Http\Resources\Movie\MovieResource;
 use Illuminate\Database\Eloquent\Collection;
+use App\Http\Resources\Slider\SliderResource;
+use App\Http\Resources\Session\SessionResource;
 
 class CinemaService
 {
