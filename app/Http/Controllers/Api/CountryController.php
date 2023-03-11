@@ -6,13 +6,15 @@ use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Country\CountryResource;
 use App\Http\Resources\Country\CountryCollection;
+use App\Http\Requests\Country\CreateCountryRequest;
 
 class CountryController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:sanctum', ['except' => ['index', 'show']]);
+        $this->middleware('auth:sanctum', ['except' => ['index', 'show', 'store']]);
     }
 
     public function index(): CountryCollection
@@ -27,12 +29,14 @@ class CountryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @return Response
+     * @param CreateCountryRequest $request
+     * @return CountryResource
      */
-    public function store(Request $request): Response
+    public function store(CreateCountryRequest $request): CountryResource
     {
-        //
+        $validated = $request->validated();
+        $country = Country::class::create($validated);
+        return new CountryResource($country);
     }
 
     /**
@@ -62,10 +66,10 @@ class CountryController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Country $country
-     * @return Response
+     * @return void
      */
-    public function destroy(Country $country): Response
+    public function destroy(Country $country): void
     {
-        //
+        $country->delete();
     }
 }
