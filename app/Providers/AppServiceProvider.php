@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Services\CinemaService;
+use App\Services\CountryService;
+use App\Services\GenreService;
 use App\Services\MovieService;
 use App\Services\OrderService;
 use App\Services\SessionService;
@@ -32,6 +34,12 @@ class AppServiceProvider extends ServiceProvider
         });
         $this->app->bind(OrderService::class, function ($app) {
             return new OrderService();
+        });
+        $this->app->bind(CountryService::class, function ($app) {
+            return new CountryService();
+        });
+        $this->app->bind(GenreService::class, function ($app) {
+            return new GenreService();
         });
     }
 

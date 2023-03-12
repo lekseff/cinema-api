@@ -27,6 +27,7 @@ use App\Http\Controllers\Api\AgeCategoryController;
 Route::get('cinema', [CinemaController::class, 'index'])->name('cinema');
 
 Route::apiResource('halls', HallController::class);
+Route::apiResource('genres', GenreController::class);
 Route::apiResource('movies', MovieController::class);
 Route::apiResource('slider', SliderController::class);
 Route::apiResource('countries', CountryController::class);
@@ -35,5 +36,4 @@ Route::apiResource('age-category', AgeCategoryController::class);
 Route::get('sessions/timetable', [SessionController::class, 'timetable']);
 Route::apiResource('sessions', SessionController::class);
 
-Route::get('genres', [GenreController::class, 'index'])->name('index.genres');
 Route::post('orders/confirm', [OrderController::class, 'confirm'])->name('orders.confirm');

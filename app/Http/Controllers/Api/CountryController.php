@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Country;
+use App\Services\CountryService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
@@ -30,12 +31,13 @@ class CountryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param CreateCountryRequest $request
+     * @param CountryService $service
      * @return CountryResource
      */
-    public function store(CreateCountryRequest $request): CountryResource
+    public function store(CreateCountryRequest $request, CountryService $service): CountryResource
     {
         $validated = $request->validated();
-        $country = Country::class::create($validated);
+        $country = $service->create($validated);
         return new CountryResource($country);
     }
 
