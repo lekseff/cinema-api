@@ -14,7 +14,7 @@ class CountryController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:sanctum', ['except' => ['index', 'show', 'store']]);
+        $this->middleware('auth:sanctum', ['except' => ['index', 'show']]);
     }
 
     public function index(): CountryCollection
