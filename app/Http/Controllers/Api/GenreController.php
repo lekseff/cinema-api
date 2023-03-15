@@ -17,15 +17,13 @@ class GenreController extends Controller
         $this->middleware('auth:sanctum', ['except' => ['index']]);
     }
 
-//    /**
-//     * @return GenreCollection
-//     */
-    public function index()
+    /**
+     * @return GenreCollection
+     */
+    public function index(): GenreCollection
     {
-//        $genres = Genre::query()->orderBy('name')->get();
-//        return new GenreCollection($genres);
-
-        return Genre::query()->get();
+        $genres = Genre::query()->orderBy('name')->get();
+        return new GenreCollection($genres);
     }
 
 
