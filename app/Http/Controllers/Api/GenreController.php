@@ -14,16 +14,18 @@ class GenreController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:sanctum', ['expect' => ['index']]);
+        $this->middleware('auth:sanctum', ['except' => ['index']]);
     }
 
-    /**
-     * @return GenreCollection
-     */
-    public function index(): GenreCollection
+//    /**
+//     * @return GenreCollection
+//     */
+    public function index()
     {
-        $genres = Genre::query()->orderBy('name')->get();
-        return new GenreCollection($genres);
+//        $genres = Genre::query()->orderBy('name')->get();
+//        return new GenreCollection($genres);
+
+        return Genre::query()->get();
     }
 
 
